@@ -1,0 +1,165 @@
+body {
+    margin:0;
+}
+
+.container {
+    height: 100vh;
+    display: flex;;
+}
+
+.sidebar {
+    background: #f9f9f9;
+    width:260px;
+    height:100vh;
+    transition: width 0.2s;
+    overflow: auto;
+}
+
+.sidebar-nav {
+    padding:12px;
+    box-sizing: border-box;
+}
+
+.history {
+    margin-top:60px;
+    font-size: .75rem;
+    height: calc(100vh - 150px);
+    overflow-y: auto;
+}
+
+.history .title{
+    font-weight: bold;
+}
+
+.history .msg-item{
+    white-space: nowrap;
+    font-size: 1rem;
+    margin-top: 16px;
+    overflow-x: hidden;
+}
+
+.history  .today {
+    margin-bottom: 24px;
+}
+
+.history  .yesterday {
+    margin-bottom: 24px;
+}
+
+.history  .last-7days {
+    margin-bottom: 24px;
+}
+
+.history  .last-30days {
+    margin-bottom: 24px;
+}
+
+.content {
+    flex:1;
+    padding:12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.fold {
+    font-size:30px;
+    color:#7d7d7d;
+}
+
+#btn-fold-out {
+    display: none;
+}
+
+.content-log{
+    flex:1;
+}
+
+.content-nav {
+    height: 100px;
+}
+
+.content-footer {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-chat-wrapper {
+    width: 650px;
+    background-color: rgb(244, 244, 244);
+    border-radius: 26px;
+    padding: .375rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#input-attachment {
+    margin-left: .375rem;
+    color: #0d0d0d;
+    font-size:28px;
+}
+
+#input-chat {
+    outline: none;
+    border: none;
+    color:#0d0d0d;
+    width: 100%;
+    background-color: transparent;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: .5rem .75rem;
+}
+
+#input-send {
+    color: #d1d1d1;
+    font-size:32px;
+    margin:3px;
+}
+
+#res-log {
+    overflow-y: auto;
+    width: 650px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    height: calc(100vh - 150px - 100px);
+}
+
+.self-msg {
+    padding-bottom: .625rem;
+    padding-top: .625rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    background-color: rgb(244, 244, 244);
+    border-radius: 1.5rem;
+    align-self: flex-end;
+    margin-bottom:24px;
+}
+
+.llm-msg {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.llm-msg p {
+    word-wrap: break-word;
+    width: 100%;
+    align-self: flex-start;
+    margin-bottom:24px;
+}
+
+.llm-msg .tool-bar span{
+    padding:5px;
+}
+
+.llm-msg .tool-bar span:hover{
+    background-color: #f9f9f9;;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}

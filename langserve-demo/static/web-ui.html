@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="width=device-width,initial-scale=1.0" name="viewport">
+        <meta charset="utf-8">
+        <title>Web UI</title>
+        <link rel="stylesheet" href="./assets/font/iconfont.css">
+        <link rel="stylesheet" href="./assets/css/index.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="sidebar">
+                <div class="sidebar-nav">
+                    <span id="btn-fold-in" class="iconfont icon-zhedie1 fold"></span>
+                    <div class="history">
+                        <div class="today"></div>
+                        <div class="yesterday"></div>
+                        <div class="last-7days"></div>
+                        <div class="last-30days"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="content-log">
+                    <div class="content-nav">
+                        <span id="btn-fold-out" class="iconfont icon-zhedie2 fold"></span>
+                    </div>
+                    <div id="res-log"></div>
+                </div>
+                <div class="content-footer">
+                    <div class="input-chat-wrapper">
+                        <span id="input-attachment" class="iconfont icon-fujian"></span>
+                        <input id="input-chat" placeholder="请“大模型”发送消息">
+                        <span id="input-send" class="iconfont icon-shangchuan"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script src="./web-ui.js"></script>
+<script>
+const today = document.querySelector('.today');
+const yesterday = document.querySelector('.yesterday');
+const last7days = document.querySelector('.last-7days');
+const last30days = document.querySelector('.last-30days');
+
+today.innerHTML = `
+    <div class="title">今天</div>
+    <div class="msg-item">The role of scientific data collection in regulatory processes is at stake.</div>
+    <div class="msg-item">The role of scientific .</div>
+    <div class="msg-item">The role of scientifiory processes is at stake.</div>
+`
+
+yesterday.innerHTML = `
+    <div class="title">昨天</div>
+    <div class="msg-item">The role of scientific data collection in regulatory processes is at stake.</div>
+    <div class="msg-item">The role of scientific .</div>
+    <div class="msg-item">The role of scientifiory processes is at stake.</div>
+`
+
+last7days.innerHTML = `
+    <div class="title">最近7天</div>
+    <div class="msg-item">The role of scientific data collection in regulatory processes is at stake.</div>
+    <div class="msg-item">The role of scientific .</div>
+    <div class="msg-item">The role of scientifiory processes is at stake.</div>
+    <div class="msg-item">The role of scientific data collection in regulatory processes is at stake.</div>
+`
+
+last30days.innerHTML = `
+    <div class="title">最近30天</div>
+    <div class="msg-item">The role of scientific data collection in regulatory processes is at stake.</div>
+    <div class="msg-item">The role of scientific .</div>
+    <div class="msg-item">The role of scientifiory processes is at stake.</div>
+`
+</script>

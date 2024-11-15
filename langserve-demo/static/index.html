@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>LangServe Demo</title>
+    </head>
+    <body>
+        <h1>LangServe Demo</h1>
+        <div>
+            <span>LANGUAGE</span>
+            <input id="lang" value="chinese"/>
+        </div>
+        <div>
+            <span>TEXT</span>
+            <input id="text" value="hi"/>
+        </div>
+        <div id="res">
+
+        </div>
+        <div>
+            <button onclick="sendRequest()">Send</button>
+        </div>
+        </div>
+    </body>
+</html>
+<script>
+function sendRequest(){
+    const data = {
+        input: {
+            language: document.querySelector("#lang").value,
+            text: document.querySelector("#text").value
+        },
+        config: {}
+    }; 
+
+    fetch("http://127.0.0.1:8000/chain/stream_log",{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+    }).then(response => {
+        if (response.ok) {
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder("utf-8");
+            const res = document.querySelector("#res");
+
+            function read() {
+                reader.read().then(({ done, value }) => {
+                    if (done) {
+                        console.log('Stream closed');
+                        return;
+                    }
+
+                    const chunk = decoder.decode(value, { stream: true });
+                    // console.log(1000,chunk.split('\r\n'))
+                    chunk.split('\r\n').forEach(eventString => {
+                        // console.log(1000,eventString);
+                        if (eventString && eventString.startsWith('data: ')) {
+                            // console.log(2000,eventString);
+                            const str = eventString.substring("data: ".length);
+                            const data = JSON.parse(str)
+                            // console.log(3000,data);
+                            data.ops.forEach(item => {
+                                if(item.op === "add" && item.path === "/logs/ChatZhipuAI/streamed_output_str/-"){
+                                    res.innerHTML += item.value;  
+                                }
+                            })
+                        }
+                    });
+                    
+
+                    read();
+                }).catch(error => {
+                    console.error('Stream error', error);
+                });
+            }
+
+            read();
+        } else {
+            console.error('Network response was not ok.');
+        }
+    }).catch(error => {
+        console.error('Fetch error:', error);
+    });    
+}
+</script>
